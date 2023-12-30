@@ -10,8 +10,8 @@ const App = () => {
   };
   
   return (
-    <div className="w-screen h-screen flex items-center">
-      <section className="bg-white w-[90%] md:w-[50%] md:mt-0 my-[15%] mx-auto rounded py-12 px-8 shadow-xl">
+    <div className="w-screen h-auto flex items-center">
+      <section className="bg-white w-[90%] md:w-[50%] mx-auto my-48 rounded py-12 px-8 shadow-xl">
         <h1 className="text-3xl">{title}</h1>
         {people.map((datas) => {
           return (
