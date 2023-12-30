@@ -16,7 +16,7 @@ const App = () => {
   };
   return (
     <div className="w-screen h-screen flex items-center flex-col bg-blue-200">
-      <section className="bg-white w-[90%] md:w-[50%] mx-auto mt-24 rounded py-12 px-8 shadow-xl">
+      <section className="bg-white w-[90%] md:w-[50%] mx-auto mt-12 rounded py-12 px-8 shadow-xl">
         <h1 className="text-3xl font-bold text-blue-950 uppercase">{title}</h1>
       </section>
       {person.map((persons) => {
