@@ -2,51 +2,54 @@ import React, { useState } from "react";
 import { data } from "./data";
 
 const App = () => {
-  const [people, setPeople] = useState(data);
-  const [title, setTitle] = useState("5 Birthdays Today");
-  const handleClick = () => {
-    setTitle("0 Birthday today")
-    setPeople([]);
+  const [person, setPerson] = useState(data);
+  const [title, setTitle] = useState("Names of My Friends");
+
+  const removePerson = (id) => {
+    let newPeople = person.filter((person) => person.id - id);
+    setPerson(newPeople);
   };
-  
+
+  const removeAll = () => {
+    setPerson([]);
+    setTitle("No Names here");
+  };
   return (
-    <div className="w-screen h-auto flex items-center">
-      <section className="bg-white w-[90%] md:w-[50%] mx-auto my-48 rounded py-12 px-8 shadow-xl">
-        <h1 className="text-3xl">{title}</h1>
-        {people.map((datas) => {
-          return (
-            <div
-              className="flex items-center gap-2 py-4"
-              key={datas.id}
-              datas={datas}
-            >
-              <img
-                src={datas.image}
-                className="h-20 w-20 rounded-full object-cover shadow-lg"
-                alt={datas.name}
-                onMouseOver={() => {
-                  console.log(`I am ${datas.name}`);
-                }}
-              />
-              <div>
-                <h1 className="text-2xl font-semibold">{datas.name}</h1>
-                <h4 className="text-sm font-semibold text-slate-400">
-                  {datas.age}
-                </h4>
-              </div>
-            </div>
-          );
-        })}
-        <button
-          type="button"
-          className="bg-[#d946ef] w-full rounded  py-4
-      text-white shadow-md text-xl
-      hover:bg-[#a21caf] hover:shadow-lg"
-          onClick={handleClick}
-        >
-          Clear all
-        </button>
+    <div className="w-screen h-screen flex items-center flex-col bg-blue-200">
+      <section className="bg-white w-[90%] md:w-[50%] mx-auto mt-24 rounded py-12 px-8 shadow-xl">
+        <h1 className="text-3xl font-bold text-blue-950 uppercase">{title}</h1>
       </section>
+      {person.map((persons) => {
+        const { id, name } = persons;
+        return (
+          <section
+            key={id}
+            {...persons}
+            className="relative flex text-3xl text-blue-950 font-semibold bg-white w-[90%] md:w-[50%] mx-auto mt-4 rounded py-4 px-8 shadow-xl"
+          >
+            <div className="flex gap-2">
+              <span>[{id}]</span>
+              <h1 className="">{name}</h1>
+            </div>
+            <button
+              type="button"
+              className="absolute right-4 text-blue-500  hover:text-red-400"
+              onClick={() => removePerson(id)}
+            >
+              {" "}
+              delete
+            </button>
+          </section>
+        );
+      })}
+      <button
+        type="button"
+        className=" text-blue-500 w-[50%]  text-2xl uppercase font-bold rounded mt-8 py-4 bg-blue-950"
+        onClick={removeAll}
+      >
+        {" "}
+        Clear All
+      </button>
     </div>
   );
 };
